@@ -1,2 +1,1 @@
-# cherry2 hahaha
-im smart
+# cherry2
