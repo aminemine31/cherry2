@@ -1,0 +1,63 @@
+---
+title: "fyp_skin_lesions"
+output: html_document
+date: "2023-04-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+data <- read.csv("metadata.csv")
+print(data)
+```
+```{r}
+BCC <- data$diagnostic[data$diagnostic == "BCC"]
+MEL <- data$diagnostic[data$diagnostic == "MEL"]
+SCC <- data$diagnostic[data$diagnostic == "SCC"]
+
+amountBcc <- length(BCC)
+amountMEL <- length(MEL)
+amountSCC <- length(SCC)
+
+
+sprintf("the number of people have BCC is %s", amountBcc)
+sprintf("the number of people have MEL is %s", amountMEL)
+sprintf("the number of people have SCC is %s", amountSCC)
+
+cancerous <- amountBcc+amountMEL+amountSCC
+print(cancerous)
+
+sprintf("the percentage of people who have BCC from all of the cancerous diagnostics is %s", (amountBcc/cancerous)*100)
+
+```
+```{r}
+data2 <- read.csv("features_dataframe.csv")
+data2
+```
+
+```{r}
+cancer <- subset(data2, Cancerous == 1)
+non_cancer <- subset(data2, Cancerous == 0)
+```
+
+```{r}
+cancer
+```
+```{r}
+non_cancer
+```
+
+```{r}
+mean(non_cancer$Perimeter)
+mean(non_cancer$Area)
+mean(non_cancer$Asymmetry)
+mean(non_cancer$hsv)
+```
+```{r}
+mean(cancer$Perimeter)
+mean(cancer$Area)
+mean(cancer$Asymmetry)
+mean(cancer$hsv)
+```
+
